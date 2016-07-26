@@ -1,0 +1,46 @@
+
+<!-- table rules_actions search -->
+<p>
+<a href="?view_mode=edit_rules_actions&data_source=<#DATA_SOURCE#>" class="btn btn-default"> <#LANG_ADD#></a>
+</p>
+<table width=100% border=0><tr>
+<td valign=top>
+<!-- results -->
+[#if RESULT#]
+<!-- search results (list) -->
+<form action="?" method="post" name="frmList_rules_actions" style="padding:0px" class="form">
+<table  align=center class="table table-striped">
+<tbody>
+[#begin RESULT#]
+<tr style="height:52px" class="hover_btn2">
+ <td style="vertical-align:middle"
+  >
+  <b[#if ACTIVE!="1"#] style="color:red"[#endif#]>
+   [#TITLE#]
+  </a></b>
+ </td>
+ <td style="vertical-align:middle" width="1%" nowrap>
+  <div style="width:120px">
+  [#if "<#ACTION#>"=="admin"#]
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=edit_rules_actions&id=[#ID#]" class="btn btn-default" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+   [#if CAN_DELETE="1"#]
+    <a href="?data_source=<#DATA_SOURCE#>&view_mode=delete_rules_actions&id=[#ID#]" onClick="return confirm('Are you sure?')" class="btn btn-default" title="Delete"><i class="glyphicon glyphicon-remove"></i></a>
+   [#endif#]
+  [#endif ACTION#]
+  </div>
+ </td>
+</tr>
+[#end RESULT#]
+</tbody>
+</table>
+<input type="hidden" name="data_source" value="<#DATA_SOURCE#>">
+<input type="hidden" name="view_mode" value="multiple_rules_actions">
+</form>
+<!-- / search results (list) -->
+[#else RESULT#]
+<p>
+<font color="red">No records found.</font>
+</p>
+[#endif RESULT#]
+<!-- / results -->
+</td></tr></table>

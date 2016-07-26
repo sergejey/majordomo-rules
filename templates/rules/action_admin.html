@@ -1,0 +1,72 @@
+
+[#if SET_DATASOURCE!="1"#]
+&nbsp;
+<!-- source select -->
+<ul class="nav nav-tabs">
+  <li[#if DATA_SOURCE!="rules" && DATA_SOURCE!=""#] [#else#] class="active"[#endif#]>
+   <a href="?data_source=rules"><#LANG_RULES#></a>
+  </li>
+  <li[#if DATA_SOURCE!="rules_conditions"#] [#else#] class="active"[#endif#]>
+   <a href="?data_source=rules_conditions"><#LANG_CONDITIONS#></a>
+  </li>
+  <li[#if DATA_SOURCE!="rules_actions"#] [#else#] class="active"[#endif#]>
+   <a href="?data_source=rules_actions"><#LANG_ACTIONS#></a>
+  </li>
+</ul>
+&nbsp;<br/>
+<!-- / source select -->
+[#endif SET_DATASOURCE#]
+ <!-- action usual -->
+ [#if DATA_SOURCE="rules" || DATA_SOURCE=""#]
+ <!-- table rules search -->
+ [#if VIEW_MODE="search_rules" || VIEW_MODE=""#]
+  [#inc rules_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table rules search -->
+ <!-- table rules edit -->
+ [#if VIEW_MODE="edit_rules"#]
+   [#inc rules_edit.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table rules edit -->
+ <!-- table rules view --> 
+ [#if VIEW_MODE="view_rules"#]
+   [#inc rules_view.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table rules view -->
+ [#endif DATA_SOURCE#]
+ <!-- action usual -->
+ [#if DATA_SOURCE="rules_conditions"#]
+ <!-- table rules_conditions search -->
+ [#if VIEW_MODE="search_rules_conditions" || VIEW_MODE=""#]
+  [#inc rules_conditions_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table rules_conditions search -->
+ <!-- table rules_conditions edit -->
+ [#if VIEW_MODE="edit_rules_conditions"#]
+   [#inc rules_conditions_edit.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table rules_conditions edit -->
+ <!-- table rules_conditions view --> 
+ [#if VIEW_MODE="view_rules_conditions"#]
+   [#inc rules_conditions_view.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table rules_conditions view -->
+ [#endif DATA_SOURCE#]
+ <!-- action usual -->
+ [#if DATA_SOURCE="rules_actions"#]
+ <!-- table rules_actions search -->
+ [#if VIEW_MODE="search_rules_actions" || VIEW_MODE=""#]
+  [#inc rules_actions_search_admin.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table rules_actions search -->
+ <!-- table rules_actions edit -->
+ [#if VIEW_MODE="edit_rules_actions"#]
+   [#inc rules_actions_edit.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table rules_actions edit -->
+ <!-- table rules_actions view --> 
+ [#if VIEW_MODE="view_rules_actions"#]
+   [#inc rules_actions_view.html#]
+ [#endif VIEW_MODE#]
+ <!-- / table rules_actions view -->
+ [#endif DATA_SOURCE#]

@@ -1,0 +1,81 @@
+
+<!-- table rules search -->
+
+<!-- Table 'rules' edit -->
+<form action="?" method="post" enctype="multipart/form-data" name="frmEdit" class="form-horizontal">
+<!-- TITLE (varchar) -->
+<div class="form-group">
+ <label class="col-lg-3 control-label"[#if ERR_IF#] style="color:red;font-weight:bold"[#endif#]>
+ <#LANG_IF#>
+ </label>
+ <div class="col-lg-4"><input type="text" class="form-control" name="if" value="" ></div>
+</div>
+
+<div class="form-group">
+ <label class="col-lg-3 control-label"[#if ERR_THEN] style="color:red;font-weight:bold"[#endif#]>
+ <#LANG_THEN#>
+ </label>
+ <div class="col-lg-4"><input type="text" class="form-control" name="then" value="" ></div>
+</div>
+
+
+<div class="form-group">
+        <div class="col-lg-offset-3 col-lg-4">
+ <button type="submit" name="subm" value="Add" class="btn btn-primary"><#LANG_ADD#></button>
+<input type="hidden" name="mode" value="add">
+<input type="hidden" name="data_source" value="<#DATA_SOURCE#>">
+        </div>
+</div>
+</fieldset>
+</form>
+
+
+<table width=100% border=0><tr>
+<td valign=top>
+<!-- results -->
+[#if RESULT#]
+<!-- search results (list) -->
+<form action="?" method="post" name="frmList_rules" style="padding:0px" class="form">
+<table  align=center class="table table-striped">
+<tbody>
+[#begin RESULT#]
+<tr style="height:52px" class="hover_btn2">
+ <td style="vertical-align:middle"
+  >
+  <#LANG_IF#>
+  [#begin CONDITIONS#]
+  <a href="?data_source=rules_conditions&view_mode=edit_rules_conditions&id=[#ID#]"[#if ACTIVE!="1"#] style='color:red'[#endif#]>[#TITLE#]</a>
+  [#if LAST!="1"#]
+   [#if "<#RESULT.CONDITION_TYPE#>"=="0"#]<#LANG_AND#>[#endif#]
+   [#if "<#RESULT.CONDITION_TYPE#>"=="1"#]<#LANG_OR#>[#endif#]
+  [#endif#]
+  [#end CONDITIONS#]
+  <#LANG_THEN#>
+  [#begin ACTIONS#]
+  <a href="?data_source=rules_actions&view_mode=edit_rules_actions&id=[#ID#]"[#if ACTIVE!="1"#] style='color:red'[#endif#]>[#TITLE#]</a>
+  [#if LAST!="1"#]<#LANG_AND#>[#endif#]
+  [#end ACTIONS#]
+
+
+ </td>
+ <td style="vertical-align:middle" width="1%" nowrap>
+  <div style="width:120px">
+  [#if "<#ACTION#>"=="admin"#]
+  <!--#
+   <a href="?data_source=<#DATA_SOURCE#>&view_mode=edit_rules&id=[#ID#]" class="btn btn-default" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+   #-->
+    <a href="?data_source=<#DATA_SOURCE#>&view_mode=delete_rules&id=[#ID#]" onClick="return confirm('Are you sure?')" class="btn btn-default" title="Delete"><i class="glyphicon glyphicon-remove"></i></a>
+  [#endif ACTION#]
+  </div>
+ </td>
+</tr>
+[#end RESULT#]
+</tbody>
+</table>
+<input type="hidden" name="data_source" value="<#DATA_SOURCE#>">
+<input type="hidden" name="view_mode" value="multiple_rules">
+</form>
+<!-- / search results (list) -->
+[#endif RESULT#]
+<!-- / results -->
+</td></tr></table>
