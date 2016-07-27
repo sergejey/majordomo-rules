@@ -145,8 +145,11 @@ function admin(&$out) {
 
    if ($if!='' && $then!='') {
 
+    $if=str_replace('  ', ' ', $if);
     $if=preg_replace('/ или /uis', ' or ', $if);
     $if=preg_replace('/ и /uis', ' and ', $if);        
+
+    $then=str_replace('  ', ' ', $then);
     $then=preg_replace('/ и /uis', ' and ', $then);            
     $then=preg_replace('/ или /uis', ' and ', $then);                        
 

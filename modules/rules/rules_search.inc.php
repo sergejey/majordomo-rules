@@ -55,3 +55,6 @@
    }
    $out['RESULT']=$res;
   }
+
+  $out['ALL_ACTIONS']=SQLSelect("SELECT * FROM rules_actions ORDER BY TITLE");
+  $out['ALL_CONDITIONS']=SQLSelect("SELECT * FROM rules_conditions ORDER BY TITLE");

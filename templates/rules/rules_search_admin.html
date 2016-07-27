@@ -1,6 +1,9 @@
 
 <!-- table rules search -->
 
+<link rel="stylesheet" href="<#ROOTHTML#>js/awesomeplete/awesomplete.css" /> 
+<script src="<#ROOTHTML#>js/awesomeplete/awesomplete.min.js"></script>
+
 <!-- Table 'rules' edit -->
 <form action="?" method="post" enctype="multipart/form-data" name="frmEdit" class="form-horizontal">
 <!-- TITLE (varchar) -->
@@ -8,15 +11,43 @@
  <label class="col-lg-3 control-label"[#if ERR_IF#] style="color:red;font-weight:bold"[#endif#]>
  <#LANG_IF#>
  </label>
- <div class="col-lg-4"><input type="text" class="form-control" name="if" value="" ></div>
+ <div class="col-lg-4"><input type="text" class="form-control multi1" list="mylist1" name="if" value="" ></div>
+<datalist id="mylist1">
+[#begin ALL_CONDITIONS#]<option>[#TITLE#]</option>[#end ALL_CONDITIONS#]
+</datalist>
 </div>
-
 <div class="form-group">
  <label class="col-lg-3 control-label"[#if ERR_THEN#] style="color:red;font-weight:bold"[#endif#]>
  <#LANG_THEN#>
  </label>
- <div class="col-lg-4"><input type="text" class="form-control" name="then" value="" ></div>
+ <div class="col-lg-4"><input type="text" class="form-control multi2" name="then" list="mylist2" value=""></div>
+<datalist id="mylist2">
+[#begin ALL_ACTIONS#]<option>[#TITLE#]</option>[#end ALL_ACTIONS#]
+</datalist>
 </div>
+
+<script language="javascript">
+ new Awesomplete('.multi1', {
+        filter: function(text, input) {
+                return Awesomplete.FILTER_CONTAINS(text, input.match(/[^(или )(and )(or )(и )]*$/)[0]);
+        },
+        replace: function(text) {
+                var before = this.input.value.match(/^.+ (или|and|or|и)\s*|/)[0];
+				
+                this.input.value = before + ' '+ text + "";
+        }
+});
+ new Awesomplete('.multi2', {
+        filter: function(text, input) {
+                return Awesomplete.FILTER_CONTAINS(text, input.match(/[^(или )(and )(or )(и )]*$/)[0]);
+        },
+        replace: function(text) {
+                var before = this.input.value.match(/^.+ (или|and|or|и)\s*|/)[0];
+				
+                this.input.value = before + ' '+ text + "";
+        }
+});
+</script>
 
 
 <div class="form-group">
