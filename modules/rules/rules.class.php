@@ -548,7 +548,7 @@ function usual(&$out) {
 *
 * @access private
 */
- function dbInstall() {
+ function dbInstall($data) {
 /*
 rules - Rules
 rules_conditions - Conditions
