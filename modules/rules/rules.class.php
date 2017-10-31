@@ -536,6 +536,7 @@ function usual(&$out) {
 * @access public
 */
  function uninstall() {
+  unsubscribeFromEvent($this->name,'COMMAND');
   SQLExec('DROP TABLE IF EXISTS rules');
   SQLExec('DROP TABLE IF EXISTS rules_conditions');
   SQLExec('DROP TABLE IF EXISTS rules_actions');
